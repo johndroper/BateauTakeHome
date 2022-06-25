@@ -33,12 +33,23 @@ namespace ConsoleApp3
                     }
 
                     //add parse check for cols[1] and cols[2]
+                    if(!int.TryParse(cols[1], out int start))
+                    {
+                        Console.WriteLine($"Warning! Unable to parse value '{cols[1]}' in col 2 at Line number '{lineNumber}'.");
+                        continue;
+                    }
+
+                    if (!int.TryParse(cols[2], out int size))
+                    {
+                        Console.WriteLine($"Warning! Unable to parse value '{cols[2]}' in col 3 at Line number '{lineNumber}'.");
+                        continue;
+                    }
 
                     chunks.Add(
                         new Chunk(
-                            cols[0], 
-                            int.Parse(cols[1]), 
-                            int.Parse(cols[2])));
+                            cols[0],
+                            start,
+                            size));
 
                     lineNumber++;
                 }
